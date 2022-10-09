@@ -52,4 +52,18 @@ contract CounterApp is ERC721URIStorage {
 
         emit AppUpdated(msg.sender, address(this), currentVersion+1);
     }
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public virtual override {
+        require(
+            _isApprovedOrOwner(_msgSender(), tokenId),
+            "ERC721: caller is not token owner nor approved"
+        );
+
+        _transfer(from, to, tokenId);
+        appOwner = to;
+    }
 }
