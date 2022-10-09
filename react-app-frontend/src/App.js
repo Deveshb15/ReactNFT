@@ -138,17 +138,6 @@ function App() {
           )
         }
 			</main>
-
-			<footer>
-				Built with ❤️ by{" "}
-				<a
-					href="https://twitter.com/Deveshb15"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Devesh
-				</a>
-			</footer>
 		</div>
 	);
 }
