@@ -1,13 +1,6 @@
-# Sample Hardhat Project
+## Deployed contract on Mumbai - **0x33209bcde22fdbF6519413Aad044A1B32f162936**
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Link for the NFT - https://testnet.rarible.com/token/polygon/0x33209bcde22fdbf6519413aad044a1b32f162936:1
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+- ![image](https://i.ibb.co/m0yWLW4/image.png)
+- ![NFT](https://i.ibb.co/JnxwfZz/animation.png)

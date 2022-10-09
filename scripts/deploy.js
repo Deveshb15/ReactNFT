@@ -8,7 +8,7 @@ const hre = require("hardhat");
 
 async function main() {
   const CounterAPP = await hre.ethers.getContractFactory("CounterApp");
-  const counterAPP = await Lock.deploy("ipfs://QmT2PcFG14UStgcQFtz7TftXBvukMk1V6Ed8So9XG9BcGe");
+  const counterAPP = await CounterAPP.deploy("ipfs://QmZ4RC9UcChiqhjQ1LyhA22pJ986FwCs8ns7VyaP2XFkr9");
 
   await counterAPP.deployed();
 
