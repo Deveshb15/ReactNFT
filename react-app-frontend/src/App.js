@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
 	let initialState = ["", "", "", "", "", "", "", "", ""];
 	const [gameState, setGameState] = useState(initialState);
+  const [winnerStatus, setWinnerStatus] = useState("")
 
 	const onSquareClick = (index) => {
 		if(gameState[index] !== "X" && gameState[index] !== "O") {
@@ -50,17 +51,15 @@ function App() {
     const winner = checkWinner()
     // console.log(winner)
     if(winner) {
-      alert(`${winner} wins`)
+      setWinnerStatus(winner)
       clearHandler()
     } 
   }, [gameState])
 
-	return (
-		<div className="app-header">
-			<main className="App-header">
-				<h1 className="heading-text text ">Tic-Tac-Toe</h1>
-
-				<div className="row jc-center">
+  const DefaultComponent = () => (
+    <div>
+      <h1 className="heading-text text ">Tic-Tac-Toe</h1>
+      <div className="row jc-center">
 					<div
 						onClick={() => onSquareClick(0)}
 						className="square b-bottom-right text"
@@ -115,6 +114,29 @@ function App() {
 				<button onClick={clearHandler} className="clear-button">
 					Clear
 				</button>
+    </div>
+  )
+
+  const WinnerComponent = () => (
+    <div>
+      <h1 className="heading-text text ">{winnerStatus} wins!</h1>
+      <button onClick={() => setWinnerStatus("")} className="clear-button">
+					Play Again
+				</button>
+    </div>
+  )
+
+	return (
+		<div className="app-header">
+			<main className="App-header">
+
+        {
+          (winnerStatus === "X" || winnerStatus === "O") ? (
+            <WinnerComponent />
+          ) : (
+            <DefaultComponent />
+          )
+        }
 			</main>
 
 			<footer>
