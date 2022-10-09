@@ -5,4 +5,6 @@
 
 ### Build App IPFS - https://cf-ipfs.com/ipfs/QmRuuwS5L5hYNtKipC4Uk34ZZzEdpk6doQALfUYqWcnQwZ
 
-- ![NFT](https://i.ibb.co/cck7ZpB/image.png)
+### Metadata IPFS - https://cf-ipfs.com/ipfs/QmSgeJuDMezUjAzmX8PhFgzSY4ZL8V4voHz3YrDaY7aATU
+
+- ![NFT](https://i.ibb.co/2N9K6kQ/image.png)
