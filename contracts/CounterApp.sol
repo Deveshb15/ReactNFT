@@ -18,6 +18,7 @@ contract CounterApp is ERC721URIStorage {
     // Events
     // Mint event
     event Minted(address indexed from, address indexed to, uint256 version);
+    event AppUpdated(address indexed from, address indexed to, uint256 version);
 
     constructor(string memory _tokenURI) ERC721("CounterApp", "CAS") {
         appOwner = msg.sender;
@@ -48,5 +49,7 @@ contract CounterApp is ERC721URIStorage {
         _setTokenURI(1, _tokenURI);
         builds[currentVersion+1] = _tokenURI;
         versions.increment();
+
+        emit AppUpdated(msg.sender, address(this), currentVersion+1);
     }
 }
