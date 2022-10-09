@@ -1,6 +1,5 @@
-## Deployed contract on Mumbai - **0x33209bcde22fdbF6519413Aad044A1B32f162936**
+## Deployed contract on Mumbai - **0x3Bb5335FAD40915Cca6636ef480aE195065C373f**
 
-## Link for the NFT - https://testnet.rarible.com/token/polygon/0x33209bcde22fdbf6519413aad044a1b32f162936:1
+## Link for the NFT - https://testnets.opensea.io/assets/goerli/0x3bb5335fad40915cca6636ef480ae195065c373f/1
 
-- ![image](https://i.ibb.co/m0yWLW4/image.png)
-- ![NFT](https://i.ibb.co/JnxwfZz/animation.png)
+- ![NFT](https://i.ibb.co/cck7ZpB/image.png)
