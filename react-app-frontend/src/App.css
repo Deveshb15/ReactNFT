@@ -31,9 +31,17 @@
   margin: 20px;
 }
 
-.square-selected {
+.square-winner {
   background-color: #D6B9FC !important;
-  color: #000;
+  color: #000 !important;
+}
+
+.x-color {
+  color: white;
+}
+
+.o-color {
+  color: #D6B9FC;
 }
 
 .play-again-button {

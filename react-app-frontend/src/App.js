@@ -6,14 +6,15 @@ function App() {
 	const [gameState, setGameState] = useState(initialState);
 	const [winnerStatus, setWinnerStatus] = useState("");
 	const [tieHand, setTieHand] = useState(0)
+	const [winState, setWinState] = useState([])
 
 	const onSquareClick = (index) => {
 		if (gameState[index] !== "X" && gameState[index] !== "O") {
 			let strings = Array.from(gameState);
 			strings[index] = "X";
-			let randomIndex = Math.floor(Math.random() * 9 + 1);
+			let randomIndex = Math.floor(Math.random() * 9);
 			while (strings[randomIndex] !== "") {
-				randomIndex = Math.floor(Math.random() * 9 + 1);
+				randomIndex = Math.floor(Math.random() * 9);
 			}
 			strings[randomIndex] = "O";
 			setGameState(strings);
@@ -22,6 +23,7 @@ function App() {
 
 	const clearHandler = () => {
 		setGameState(initialState);
+		setWinState([])
 	};
 
 	const checkWinner = () => {
@@ -42,6 +44,7 @@ function App() {
 				gameState[a] === gameState[b] &&
 				gameState[a] === gameState[c]
 			) {
+				setWinState([a, b, c])
 				return gameState[a];
 			}
 		}
@@ -89,24 +92,25 @@ function App() {
 				<div
 					onClick={() => onSquareClick(0)}
 					className={`square text ${
-						(gameState[0] === "X" || gameState[0] === "O") && "square-selected"
-					}`}
+						(winState.includes(0)) && "square-winner"
+					} ${gameState[0] === 'X' ? 'x-color' : 'o-color'}`
+					}
 				>
 					<p className="text p-span">{gameState[0]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(1)}
 					className={`square text ${
-						(gameState[1] === "X" || gameState[1] === "O") && "square-selected"
-					}`}
+						(winState.includes(1)) && "square-winner"
+					} ${gameState[1] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[1]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(2)}
 					className={`square text ${
-						(gameState[2] === "X" || gameState[2] === "O") && "square-selected"
-					}`}
+						(winState.includes(2)) && "square-winner"
+					} ${gameState[2] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[2]}</p>
 				</div>
@@ -115,24 +119,24 @@ function App() {
 				<div
 					onClick={() => onSquareClick(3)}
 					className={`square text ${
-						(gameState[3] === "X" || gameState[3] === "O") && "square-selected"
-					}`}
+						(winState.includes(3)) && "square-winner"
+					} ${gameState[3] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[3]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(4)}
 					className={`square text ${
-						(gameState[4] === "X" || gameState[4] === "O") && "square-selected"
-					}`}
+						(winState.includes(4)) && "square-winner"
+					} ${gameState[4] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[4]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(5)}
 					className={`square text ${
-						(gameState[5] === "X" || gameState[5] === "O") && "square-selected"
-					}`}
+						(winState.includes(5)) && "square-winner"
+					} ${gameState[5] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[5]}</p>
 				</div>
@@ -141,24 +145,24 @@ function App() {
 				<div
 					onClick={() => onSquareClick(6)}
 					className={`square text ${
-						(gameState[6] === "X" || gameState[6] === "O") && "square-selected"
-					}`}
+						(winState.includes(6)) && "square-winner"
+					} ${gameState[6] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[6]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(7)}
 					className={`square text ${
-						(gameState[7] === "X" || gameState[7] === "O") && "square-selected"
-					}`}
+						(winState.includes(7)) && "square-winner"
+					} ${gameState[7] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[7]}</p>
 				</div>
 				<div
 					onClick={() => onSquareClick(8)}
 					className={`square text ${
-						(gameState[8] === "X" || gameState[8] === "O") && "square-selected"
-					}`}
+						(winState.includes(8)) && "square-winner"
+					} ${gameState[8] === 'X' ? 'x-color' : 'o-color'}`}
 				>
 					<p className="text p-span">{gameState[8]}</p>
 				</div>
