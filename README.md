@@ -1,20 +1,16 @@
-## Deployed contract on Goerli - **0x3bb5335fad40915cca6636ef480ae195065c373f**
+## Deployed contract on Goerli - **0xE087347De9d3c9E95f7b5cA3Fc1B324dB7a33992**
 
 <hr />
 
-### Link for the NFT - https://testnets.opensea.io/assets/goerli/0x3bb5335fad40915cca6636ef480ae195065c373f/1
+### Link for the NFT - https://goerli.looksrare.org/collections/0xE087347De9d3c9E95f7b5cA3Fc1B324dB7a33992/1
 
 <hr />
 
-### Build App IPFS - https://cf-ipfs.com/ipfs/Qmevc8YtWdJGrDpnZFnKjncXDqqJm54EdrK6kH3X9gWTJw
+### Build App IPFS - https://tictactoenft.vercel.app
 
 <hr />
 
-### Metadata IPFS - https://cf-ipfs.com/ipfs/QmRXFKyEcLKWzPqgtKm8NMoDY9foYP52ARQi5nDEsSKYD5
-
-<hr />
-
-- ![NFT](https://i.ibb.co/2N9K6kQ/image.png)
+![NFT](https://i.ibb.co/qsKKwNf/image.png)
 
 
 
