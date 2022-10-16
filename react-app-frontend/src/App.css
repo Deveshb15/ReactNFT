@@ -150,6 +150,10 @@ a {
       justify-content: center;
   }
 
+  .p-span {
+    transform: translate(-50%, -23%);
+  }
+
   .clear-button {
       width: max-content;
       background: transparent;
@@ -163,7 +167,7 @@ a {
   }
 
   .asset-logo {
-    bottom: 16px;
+    bottom: 12px;
     right: 12px;
   }
 }
