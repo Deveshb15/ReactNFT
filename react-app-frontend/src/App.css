@@ -212,4 +212,10 @@ a {
       align-items: center;
       justify-content: center;
   }
+
+  .asset-logo {
+    bottom: 0px;
+    right: 12px;
+    width: 60px;
+  }
 }
