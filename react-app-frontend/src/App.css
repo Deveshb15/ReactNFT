@@ -1,3 +1,9 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .app-header {
   display: flex;
@@ -127,13 +133,14 @@
 }
 
 .asset-logo {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .asset-logo > svg {
-  width: 100%;
+  width: 80px;
   height: 100%;
 }
 
@@ -178,25 +185,16 @@ a {
     margin: 4px;
     padding: 6px 12px;
   }
-
-  .asset-logo {
-    bottom: 12px;
-    right: 12px;
-  }
 }
 
 @media only screen and (max-width: 500px) {
   .asset-logo {
-    bottom: 0px;
-    right: 12px;
     width: 60px;
   }
 }
 
 @media only screen and (max-width: 495px) {
   .asset-logo {
-    bottom: -50px;
-    right: 12px;
     width: 50px;
   }
 }
@@ -214,8 +212,6 @@ a {
   }
 
   .asset-logo {
-    bottom: 0px;
-    right: 12px;
     width: 60px;
   }
 }
