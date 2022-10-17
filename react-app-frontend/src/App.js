@@ -2,21 +2,117 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+	const aiPlayer = "O"
+	const huPlayer = "X"
 	let initialState = ["", "", "", "", "", "", "", "", ""];
 	const [gameState, setGameState] = useState(initialState);
 	const [winnerStatus, setWinnerStatus] = useState("");
 	const [tieHand, setTieHand] = useState(0)
 	const [winState, setWinState] = useState([])
 
-	const onSquareClick = (index) => {
-		if (gameState[index] !== "X" && gameState[index] !== "O") {
-			let strings = Array.from(gameState);
-			strings[index] = "X";
-			let randomIndex = Math.floor(Math.random() * 9);
-			while (strings[randomIndex] !== "") {
-				randomIndex = Math.floor(Math.random() * 9);
+	
+	const emptySquares = (strings) => {
+		const arr = ["", "", "", "", "", "", "", "", ""]
+		const empty = []
+		for(let i = 0; i < arr.length; i++) {
+			if(arr[i] === strings[i]) {
+				empty.push(i)
 			}
-			strings[randomIndex] = "O";
+		}
+
+		return empty
+	}
+	
+	const minmax = (arr, player) => {
+		let strings = [...arr]
+		const availSpots = emptySquares(strings)
+		// console.log("EMo ", availSpots)
+		const winner = checkWinner(strings);
+		const tie = checkTie(strings)
+		if(tie === 8 || tie===9) {
+			if (winner === huPlayer) {
+				return { score: -10 }
+				//   clearHandler()
+			} else if(winner === aiPlayer) {
+				return { score: 10}
+			} else {
+				return { score: 0 }
+			}
+		} else if(winner) {
+			if (winner === huPlayer) {
+				return { score: -10 }
+				//   clearHandler()
+			} else if(winner === aiPlayer) {
+				return { score: 10}
+			}
+		} 
+		
+		if(availSpots.length === 0) {
+			return { score: 0 }
+		}
+
+		let moves = []
+		for(let i = 0; i < availSpots.length; i++) {
+			let move = {}
+			move.index = availSpots[i]
+			strings[availSpots[i]] = player
+			if(player === aiPlayer) {
+				let result = minmax(strings, huPlayer)
+				move.score = result.score
+			} else {
+				let result = minmax(strings, aiPlayer)
+				move.score = result.score
+			}
+
+			strings[availSpots[i]] = ''
+			moves.push(move)
+		}
+
+		
+		let bestMove;
+		if(player === aiPlayer) {
+			let bestScore = -1000000
+			for(let i = 0; i<moves.length; i++) {
+				if(moves[i].score > bestScore) {
+					bestScore = moves[i].score
+					bestMove = i
+				}
+			}
+		} else {
+			let bestScore = 1000000
+			for(let i = 0; i<moves.length; i++) {
+				if(moves[i].score < bestScore) {
+					bestScore = moves[i].score
+					bestMove = i
+				}
+			}
+		}
+
+		// console.log(moves)
+		// console.log(moves[bestMove])
+		return moves[bestMove]
+	}
+
+	const bestSpot = (strings) => {
+		const minmaxAns = minmax(strings, aiPlayer)
+		// console.log(minmaxAns) 
+		// console.log(minmaxAns.index) 
+		return minmaxAns.index
+	}
+
+	const onSquareClick = (index) => {
+		if (gameState[index] !== huPlayer && gameState[index] !== aiPlayer) {
+			let strings = Array.from(gameState);
+			strings[index] = huPlayer;
+			// let randomIndex = Math.floor(Math.random() * 9);
+			// while (strings[randomIndex] !== "") {
+			// 	randomIndex = Math.floor(Math.random() * 9);
+			// }
+			const bestIndex = bestSpot(strings)
+			console.log(bestIndex)
+			strings[bestIndex] = aiPlayer;
+			// strings[randomIndex] = aiPlayer;
+			// console.log(strings)
 			setGameState(strings);
 		}
 	};
@@ -26,7 +122,7 @@ function App() {
 		setWinState([])
 	};
 
-	const checkWinner = () => {
+	const checkWinner = (strings) => {
 		const lines = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -40,12 +136,11 @@ function App() {
 		for (let i = 0; i < lines.length; i++) {
 			const [a, b, c] = lines[i];
 			if (
-				gameState[a] &&
-				gameState[a] === gameState[b] &&
-				gameState[a] === gameState[c]
+				strings[a] &&
+				strings[a] === strings[b] &&
+				strings[a] === strings[c]
 			) {
-				setWinState([a, b, c])
-				return gameState[a];
+				return strings[a];
 			}
 		}
 		return null;
@@ -56,15 +151,20 @@ function App() {
 		clearHandler();
 	};
 
-	useEffect(() => {
-		const winner = checkWinner();
-		// console.log(winner)
+	const checkTie = (strings) => {
 		let tie = 0
-		for(let ass of gameState) {
+		for(let ass of strings) {
 			if(ass === 'X' || ass === 'O') {
 				tie++
 			}
 		}
+		return tie
+	}
+
+	useEffect(() => {
+		const winner = checkWinner(gameState);
+		// console.log(winner)
+		let tie = checkTie(gameState)
 		setTieHand(tie)
 		if (winner) {
 			setWinnerStatus(winner);
@@ -74,7 +174,7 @@ function App() {
 
 	useEffect(() => {
 		if(tieHand === 8) {
-			const winner = checkWinner();
+			const winner = checkWinner(gameState);
 			if (winner) {
 				setWinnerStatus(winner);
 				//   clearHandler()
@@ -201,7 +301,7 @@ function App() {
 		<div className="app-header">
 			<main>
 				<DefaultComponent />
-				{(winnerStatus === "T" || winnerStatus === "X" || winnerStatus === "O") && <WinnerComponent />}
+				{(winnerStatus === "T" || winnerStatus === huPlayer || winnerStatus === aiPlayer) && <WinnerComponent />}
 				<div className="asset-logo">
 					<svg width="80" height="50" viewBox="0 0 133 51" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M28.2422 50.2021H4.70703C3.45865 50.2021 2.26139 49.6512 1.37866 48.6705C0.495917 47.6897 0 46.3596 0 44.9727V8.36621C0 6.97926 0.495917 5.64912 1.37866 4.6684C2.26139 3.68768 3.45865 3.13672 4.70703 3.13672H21.1816L32.9492 16.2104V44.9727C32.9492 46.3596 32.4533 47.6897 31.5705 48.6705C30.6878 49.6512 29.4905 50.2021 28.2422 50.2021Z" fill="#D6B9FC" fillOpacity="0.3"/>
