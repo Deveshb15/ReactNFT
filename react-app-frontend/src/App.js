@@ -29,7 +29,7 @@ function App() {
 		// console.log("EMo ", availSpots)
 		const winner = checkWinner(strings);
 		const tie = checkTie(strings)
-		if(tie === 8 || tie===9) {
+		if(tie===9) {
 			if (winner === huPlayer) {
 				return { score: -10 }
 				//   clearHandler()
@@ -173,7 +173,7 @@ function App() {
 	}, [gameState]);
 
 	useEffect(() => {
-		if(tieHand === 8) {
+		if(tieHand === 9) {
 			const winner = checkWinner(gameState);
 			if (winner) {
 				setWinnerStatus(winner);
