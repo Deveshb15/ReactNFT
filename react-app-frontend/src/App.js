@@ -9,7 +9,6 @@ function App() {
 	const [winnerStatus, setWinnerStatus] = useState("");
 	const [tieHand, setTieHand] = useState(0)
 	const [winState, setWinState] = useState([])
-
 	
 	const emptySquares = (strings) => {
 		const arr = ["", "", "", "", "", "", "", "", ""]
@@ -94,10 +93,19 @@ function App() {
 	}
 
 	const bestSpot = (strings) => {
-		const minmaxAns = minmax(strings, aiPlayer)
+		// console.log(tieHand)
+		let randNoise = [0, 1]
+		if(tieHand >= randNoise[Math.floor(Math.random()*randNoise.length)]) {
+			// console.log("Best")
+			const minmaxAns = minmax(strings, aiPlayer)
+			return minmaxAns.index
+		} else {
+			// console.log("Ran")
+			const arr = emptySquares(strings)
+			return arr[Math.floor(Math.random()*arr.length)]
+		}
 		// console.log(minmaxAns) 
 		// console.log(minmaxAns.index) 
-		return minmaxAns.index
 	}
 
 	const onSquareClick = (index) => {
@@ -109,7 +117,7 @@ function App() {
 			// 	randomIndex = Math.floor(Math.random() * 9);
 			// }
 			const bestIndex = bestSpot(strings)
-			console.log(bestIndex)
+			// console.log(bestIndex)
 			strings[bestIndex] = aiPlayer;
 			// strings[randomIndex] = aiPlayer;
 			// console.log(strings)
