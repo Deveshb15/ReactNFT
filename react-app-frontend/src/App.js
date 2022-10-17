@@ -29,19 +29,19 @@ function App() {
 		const winner = checkWinner(strings);
 		const tie = checkTie(strings)
 		if(tie===9) {
-			if (winner === huPlayer) {
+			if (winner.length > 0 && winner[0] === huPlayer) {
 				return { score: -10 }
 				//   clearHandler()
-			} else if(winner === aiPlayer) {
+			} else if(winner.length > 0 && winner[0] === aiPlayer) {
 				return { score: 10}
 			} else {
 				return { score: 0 }
 			}
-		} else if(winner) {
-			if (winner === huPlayer) {
+		} else if(winner.length > 0) {
+			if (winner[0] === huPlayer) {
 				return { score: -10 }
 				//   clearHandler()
-			} else if(winner === aiPlayer) {
+			} else if(winner[0] === aiPlayer) {
 				return { score: 10}
 			}
 		} 
@@ -148,10 +148,10 @@ function App() {
 				strings[a] === strings[b] &&
 				strings[a] === strings[c]
 			) {
-				return strings[a];
+				return [a, b, c];
 			}
 		}
-		return null;
+		return [];
 	};
 
 	const playAgainHandler = () => {
@@ -174,8 +174,9 @@ function App() {
 		// console.log(winner)
 		let tie = checkTie(gameState)
 		setTieHand(tie)
-		if (winner) {
-			setWinnerStatus(winner);
+		if (winner.length > 0) {
+			setWinState([winner[0], winner[1], winner[2]])
+			setWinnerStatus(gameState[winner[0]]);
 			//   clearHandler()
 		}
 	}, [gameState]);
@@ -183,8 +184,9 @@ function App() {
 	useEffect(() => {
 		if(tieHand === 9) {
 			const winner = checkWinner(gameState);
-			if (winner) {
-				setWinnerStatus(winner);
+			if (winner.length > 0) {
+				setWinState([winner[0], winner[1], winner[2]])
+				setWinnerStatus(gameState[winner[0]]);
 				//   clearHandler()
 			} else {
 				setWinnerStatus('T')
