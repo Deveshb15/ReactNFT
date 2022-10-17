@@ -188,13 +188,13 @@ a {
 }
 
 @media only screen and (max-width: 500px) {
-  .asset-logo {
+  .asset-logo > svg {
     width: 60px;
   }
 }
 
 @media only screen and (max-width: 495px) {
-  .asset-logo {
+  .asset-logo > svg {
     width: 50px;
   }
 }
@@ -211,7 +211,7 @@ a {
       justify-content: center;
   }
 
-  .asset-logo {
+  .asset-logo > svg {
     width: 60px;
   }
 }
